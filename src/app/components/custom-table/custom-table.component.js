@@ -3,19 +3,18 @@ import customTableController from './custom-table.controller'
 
 const customTableComponent = {
   templateUrl: './app/components/custom-table/custom-table.html',
-  controllerUrl: customTableController,
-  //template: '<div>1111111111111111111111</div>',
+  controller: customTableController,
   bindings: {
     appColumns: '<',
     appData: '<'
   },
   // controller: class customTableController {
   //   constructor() {
-  //     console.log('customTable');
+  //     console.log('customTable', this.appColumns, this.appData);
   //   }
-  //   $onInit() {
-  //     console.log('customTable');
-  //   }
+  //   // $onInit() {
+  //   //   console.log('customTable');
+  //   // }
   // }
 
 

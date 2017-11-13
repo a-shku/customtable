@@ -1,12 +1,13 @@
-<!-- <table>
+<table>
   <thead>
-
+    <tr>
+      <th ng-repeat="headerCol in $ctrl.appColumns">{{headerCol}}</th>
+    </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="row in data">
-      <td ng-repeat="col in columns"></td>
+    <tr ng-repeat="row in $ctrl.appData">
+      <td ng-repeat="col in row">{{col}}</td>
     </tr>
   </tbody>
 
-</table> -->
-<h1>CUSTO111M</h1>
+</table>

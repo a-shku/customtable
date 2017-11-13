@@ -5,8 +5,7 @@
     "babel-runtime": "^6.26.0"
   },
   "scripts": {
-    "test": "gulp test",
-    "babel1": "babel src --out-dir=dist1"
+    "test": "gulp test"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
