@@ -7,16 +7,7 @@ const customTableComponent = {
   bindings: {
     appColumns: '<',
     appData: '<'
-  },
-  // controller: class customTableController {
-  //   constructor() {
-  //     console.log('customTable', this.appColumns, this.appData);
-  //   }
-  //   // $onInit() {
-  //   //   console.log('customTable');
-  //   // }
-  // }
-
+  }
 
 };
 

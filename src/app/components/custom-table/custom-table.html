@@ -1,13 +1,15 @@
-<table>
-  <thead>
-    <tr>
-      <th ng-repeat="headerCol in $ctrl.appColumns">{{headerCol}}</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr ng-repeat="row in $ctrl.appData">
-      <td ng-repeat="col in row">{{col}}</td>
-    </tr>
-  </tbody>
+<div class="custom-table-wrapper">
+  <table class="castom-table">
+    <thead>
+      <tr>
+        <th ng-repeat="headerCol in $ctrl.appColumns" ng-click="$ctrl.sorting(headerCol)">{{headerCol}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="row in $ctrl.appData  | orderBy:$ctrl.sortType:$ctrl.sortReverse">
+        <td ng-repeat="col in row">{{col}}</td>
+      </tr>
+    </tbody>
 
-</table>
+  </table>
+</div>

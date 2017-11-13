@@ -1,0 +1,11 @@
+ .custom-table-wrapper {
+   border: 1px solid #000;
+   background: #bbb;
+ }
+ table {
+   border-collapse: collapse;   
+};
+.castom-table td {
+  border: 1px solid #000;
+    padding: 4px;
+}

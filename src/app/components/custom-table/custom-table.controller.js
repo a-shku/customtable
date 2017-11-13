@@ -1,14 +1,36 @@
 export default class CustomTableController {
 
+  /*get sortType() {
+    console.log('get', this.$value);
+    return this.$value;
+  }
+
+  set sortType(value) {
+    this.$value = value;
+
+    console.log('set', value);
+  }*/
+
+
+
   constructor() {
-    'ngInject';
-    console.log('customController', this.appColumns);
-
+    //'ngInject';
+    this.sortType = 'secondData',
+      this.sortReverse = false
+    this.sorting();
   }
 
-  $onInit() {
-    console.log('customControllerINIT');
+
+  // $onInit() {
+  //   this.sorting = function (value) {
+  //     this.sortType = value;
+  //   }
+  // }
+  sorting(value) {
+    this.sortType = value;
   }
+
+
 
 
 };
