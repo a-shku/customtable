@@ -28,10 +28,6 @@ export default class CustomTableController {
     this.sortType == value || this.sortType == '-' + value ? this.sortReverse = !this.sortReverse : this.sortType = value;
   }
 
-  hideColumn(colName) {
-    console.log(this.appColumns);
-  }
-
 
 
 
