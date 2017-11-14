@@ -2,7 +2,10 @@
   <table class="castom-table">
     <thead>
       <tr>
-        <th ng-repeat="headerCol in $ctrl.appColumns" ng-click="$ctrl.sorting(headerCol)">{{headerCol}}</th>
+        <th ng-repeat="headerCol in $ctrl.appColumns" ng-click="$ctrl.sorting(headerCol)">
+          {{headerCol}}
+          <span class="sortorder" ng-show="$ctrl.sortType === headerCol" ng-class="{reverse: $ctrl.sortReverse}"></span>
+        </th>
       </tr>
     </thead>
     <tbody>
@@ -13,3 +16,4 @@
 
   </table>
 </div>
+{{$ctrl.sortType}} {{$ctrl.sortReverse}}

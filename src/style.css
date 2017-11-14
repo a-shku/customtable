@@ -9,3 +9,11 @@
   border: 1px solid #000;
     padding: 4px;
 }
+
+.sortorder:after {
+    content: '\25b2';
+}
+
+.sortorder.reverse:after {
+    content: '\25bc';
+} 

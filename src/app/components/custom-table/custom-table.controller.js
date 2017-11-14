@@ -7,7 +7,6 @@ export default class CustomTableController {
 
   set sortType(value) {
     this.$value = value;
-
     console.log('set', value);
   }*/
 
@@ -15,19 +14,18 @@ export default class CustomTableController {
 
   constructor() {
     //'ngInject';
-    this.sortType = 'secondData',
-      this.sortReverse = false
+    this.sortType = ''
+    this.sortReverse = false
     this.sorting();
   }
 
 
-  // $onInit() {
-  //   this.sorting = function (value) {
-  //     this.sortType = value;
-  //   }
-  // }
+  $onInit() {
+    this.sortType = 'firstData'
+  }
+
   sorting(value) {
-    this.sortType = value;
+    this.sortType == value || this.sortType == '-' + value ? this.sortReverse = !this.sortReverse : this.sortType = value;
   }
 
 
