@@ -2,9 +2,10 @@
   <table class="castom-table">
     <thead>
       <tr>
-        <th ng-repeat="headerCol in $ctrl.appColumns" ng-click="$ctrl.sorting(headerCol)">
-          {{headerCol}}
-          <span class="sortorder" ng-show="$ctrl.sortType === headerCol" ng-class="{reverse: $ctrl.sortReverse}"></span>
+        <th ng-repeat="headerCol in $ctrl.appColumns" ng-click="$ctrl.sorting(headerCol.title)" ng-show="headerCol.show">
+          <i class="material-icons md-18" ng-click="$ctrl.appHideColumn({col: headerCol})">&#xE8F5;</i>
+          {{headerCol.title}}
+          <span class="sortorder" ng-show="$ctrl.sortType === headerCol.title" ng-class="{reverse: $ctrl.sortReverse}"></span>
         </th>
       </tr>
     </thead>
@@ -16,4 +17,3 @@
 
   </table>
 </div>
-{{$ctrl.sortType}} {{$ctrl.sortReverse}}

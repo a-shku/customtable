@@ -1,6 +1,19 @@
 const customTableConstants = {
   columns: [
-    'firstData', 'secondData', 'thirdData'
+    {
+      title: 'firstData',
+      show: true,
+      sort: true,
+      reverse: false
+    },
+    {
+      title: 'secondData',
+      show: true
+    },
+    {
+      title: 'thirdData',
+      show: true
+    },
   ],
   data: [
     {

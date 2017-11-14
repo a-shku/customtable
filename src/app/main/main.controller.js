@@ -11,6 +11,12 @@ export class MainController {
     this.activate($timeout, webDevTec);
   }
 
+  hideColumn(col) {
+    let index = this.columns.map(function (item) { return item.title; }).indexOf(col.title);
+    console.log('hideColumn', col.title, index);
+    this.columns[index].show = false;
+  }
+
   activate($timeout, webDevTec) {
     this.getWebDevTec(webDevTec);
     $timeout(() => {

@@ -6,7 +6,8 @@ const customTableComponent = {
   controller: customTableController,
   bindings: {
     appColumns: '<',
-    appData: '<'
+    appData: '<',
+    appHideColumn: '&'
   }
 
 };
