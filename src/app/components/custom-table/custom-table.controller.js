@@ -21,7 +21,7 @@ export default class CustomTableController {
 
 
   $onInit() {
-    this.sortType = 'firstData'
+    this.sortType = 'firstData';
   }
 
   sorting(value) {

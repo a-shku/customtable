@@ -6,15 +6,49 @@ export class MainController {
     this.classAnimation = '';
     this.creationDate = 1510568737519;
     this.toastr = toastr;
+    this.originColumns = columns;
     this.columns = columns;
+    this.originData = data;
     this.data = data;
     this.activate($timeout, webDevTec);
+    this.$onInit();
+
+  }
+
+  $onInit() {
+    console.log('data');
+    this.data = this.dataColumnsInit(this.columns, this.data);
+
+  }
+
+  dataColumnsInit(cols, data) {
+    cols.forEach((item, index) => {
+      if (!item.show) {
+        data.forEach((dataItem, dataIndex) => {
+          delete dataItem[item.title];
+        })
+      }
+    })
+    console.log(data);
+    return data;
   }
 
   hideColumn(col) {
     let index = this.columns.map(function (item) { return item.title; }).indexOf(col.title);
-    console.log('hideColumn', col.title, index);
     this.columns[index].show = false;
+    this.updateVisibilityColumns(this.columns[index])
+    this.columns.splice(index, 1);
+
+  };
+
+
+  updateVisibilityColumns(col) {
+    this.data = this.data.map(item => {
+      delete item[col.title]
+      return item
+
+    });
+    console.log('visibility', this.data);
   }
 
   activate($timeout, webDevTec) {

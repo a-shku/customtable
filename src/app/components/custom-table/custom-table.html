@@ -1,9 +1,11 @@
 <div class="custom-table-wrapper">
-  <table class="castom-table">
+  <app-switch-columns> </app-switch-columns>
+
+  <table class="custom-table">
     <thead>
       <tr>
         <th ng-repeat="headerCol in $ctrl.appColumns" ng-click="$ctrl.sorting(headerCol.title)" ng-show="headerCol.show">
-          <i class="material-icons md-18" ng-click="$ctrl.appHideColumn({col: headerCol})">&#xE8F5;</i>
+          <i class="material-icons md-18 hide-column" ng-click="$ctrl.appHideColumn({col: headerCol})">&#xE8F5;</i>
           {{headerCol.title}}
           <span class="sortorder" ng-show="$ctrl.sortType === headerCol.title" ng-class="{reverse: $ctrl.sortReverse}"></span>
         </th>
@@ -11,7 +13,8 @@
     </thead>
     <tbody>
       <tr ng-repeat="row in $ctrl.appData  | orderBy:$ctrl.sortType:$ctrl.sortReverse">
-        <td ng-repeat="col in row">{{col}}</td>
+        <td ng-repeat="col in row ">{{col}}</td>
+        <!--col in row-->
       </tr>
     </tbody>
 
