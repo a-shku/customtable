@@ -6,7 +6,7 @@ export class MainController {
     this.classAnimation = '';
     this.creationDate = 1510568737519;
     this.toastr = toastr;
-    this.originColumns = columns;
+    this.originColumns = angular.copy(columns);
     this.columns = columns;
     this.originData = data;
     this.data = data;
@@ -26,6 +26,7 @@ export class MainController {
       if (!item.show) {
         data.forEach((dataItem, dataIndex) => {
           delete dataItem[item.title];
+
         })
       }
     })
@@ -35,14 +36,16 @@ export class MainController {
 
   hideColumn(col) {
     let index = this.columns.map(function (item) { return item.title; }).indexOf(col.title);
-    this.columns[index].show = false;
-    this.updateVisibilityColumns(this.columns[index])
+    this.updateVisibilityData(this.columns[index])
     this.columns.splice(index, 1);
+
+    let indexOrigin = this.originColumns.map(function (item) { return item.title; }).indexOf(col.title);
+    this.originColumns[indexOrigin].show = false;
 
   };
 
 
-  updateVisibilityColumns(col) {
+  updateVisibilityData(col) {
     this.data = this.data.map(item => {
       delete item[col.title]
       return item

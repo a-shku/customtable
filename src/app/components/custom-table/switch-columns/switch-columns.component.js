@@ -1,9 +1,14 @@
-//import template from './app/components/custom-table/switch-columns/switch-columns.html';
 
 const switchColumns = {
   templateUrl: './app/components/custom-table/switch-columns/switch-columns.html',
+  bindings: {
+    switcher: '&'
+  },
   controller: class SwitchColumnsController {
-    constuctor() { }
+    constructor() {
+      console.log('SWITCH');
+
+    }
 
 
   }

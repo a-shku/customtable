@@ -8,10 +8,13 @@
       <acme-navbar creation-date="main.creationDate"></acme-navbar>
     </header>
 
-    <custom-table app-columns="main.columns" app-data="main.data" app-hide-column="main.hideColumn(col)">
+    <div class="custom-table-wrapper">
+      <app-switch-columns data-switcher="main.originColumns"> </app-switch-columns>
 
-    </custom-table>
+      <custom-table app-columns="main.columns" app-data="main.data" app-hide-column="main.hideColumn(col)">
 
+      </custom-table>
+    </div>
     <section class="jumbotron">
       <h1>'Allo, 'Allo!</h1>
       <p class="lead">
