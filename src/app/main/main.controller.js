@@ -17,6 +17,7 @@ export class MainController {
 
   $onInit() {
     console.log('data');
+    this.hiddenColumns = [];
     this.data = this.dataColumnsInit(this.columns, this.data);
 
   }
@@ -35,12 +36,25 @@ export class MainController {
   }
 
   hideColumn(col) {
-    let index = this.columns.map(function (item) { return item.title; }).indexOf(col.title);
-    this.updateVisibilityData(this.columns[index])
-    this.columns.splice(index, 1);
+    //let index = this.columns.map(function (item) { return item.title; }).indexOf(col.title);
 
-    let indexOrigin = this.originColumns.map(function (item) { return item.title; }).indexOf(col.title);
-    this.originColumns[indexOrigin].show = false;
+    function getTurnerdOffIndex(arr, col) {
+      return arr.map(function (item) { return item.title; }).indexOf(col.title);
+    };
+
+    let index = getTurnerdOffIndex(this.columns, col);
+    let indexOrigin = getTurnerdOffIndex(this.originColumns, col);
+
+    this.updateVisibilityData(this.columns[index])
+    let turnedOffCol = this.columns[index];
+    turnedOffCol.show = false;
+    this.columns.splice(index, 1);
+    this.hiddenColumns.push(turnedOffCol);
+
+    console.log('this.hiddenColumns', this.hiddenColumns);
+
+    //let indexOrigin = this.originColumns.map(function (item) { return item.title; }).indexOf(col.title);
+    //this.originColumns[indexOrigin].show = false;
 
   };
 
