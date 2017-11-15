@@ -1,7 +1,34 @@
 <i class="material-icons show-column">&#xE03B;</i>
 
-<ul>
-  <li ng-repeat="col in $ctrl.appColumns" ng-class="{inactive: !col.show}">
+<ul class="switcher-list">
+  <li class="switcher-item" ng-repeat="col in $ctrl.appColumns" ng-class="{inactive: !col.show}">
     {{col}}
   </li>
 </ul>
+
+<md-menu>
+  <md-button aria-label="Open phone interactions menu" class="md-icon-button" ng-click="$ctrl.openMenu($mdMenu, $event)">
+    <i class="material-icons show-column">&#xE03B;</i>
+  </md-button>
+  <md-menu-content width="4">
+    <md-menu-item>
+      <md-button ng-click="$ctrl.redial($event)">
+        <md-icon md-svg-icon="call:dialpad" md-menu-align-target=""></md-icon>
+        Redial
+      </md-button>
+    </md-menu-item>
+    <md-menu-item>
+      <md-button disabled="disabled" ng-click="$ctrl.checkVoicemail()">
+        <md-icon md-svg-icon="call:voicemail"></md-icon>
+        Check voicemail
+      </md-button>
+    </md-menu-item>
+    <md-menu-divider></md-menu-divider>
+    <md-menu-item>
+      <md-button ng-click="$ctrl.toggleNotifications()">
+        <md-icon md-svg-icon="social:notifications-{{$ctrl.notificationsEnabled ? 'off' : 'on'}}"></md-icon>
+        {{$ctrl.notificationsEnabled ? 'Disable' : 'Enable' }} notifications
+      </md-button>
+    </md-menu-item>
+  </md-menu-content>
+</md-menu>

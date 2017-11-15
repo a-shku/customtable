@@ -19,6 +19,10 @@
   cursor: pointer;
 }
 
+.switcher-item.inactive {
+  color: #777;
+}
+
 table {
   border-collapse: collapse;   
 }
@@ -35,6 +39,13 @@ table {
 .sortorder.reverse:after {
     content: '\25bc';
 } 
+
+.menudemoBasicUsage .md-menu-demo {
+  padding: 24px; }
+
+.menudemoBasicUsage .menu-demo-container {
+  min-height: 200px; }
+
 
 .material-icons.md-18 { font-size: 18px; }
 .material-icons.md-24 { font-size: 24px; }
