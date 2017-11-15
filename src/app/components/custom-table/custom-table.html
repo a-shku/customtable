@@ -3,14 +3,14 @@
     <tr>
       <th ng-repeat="headerCol in $ctrl.appColumns" ng-click="$ctrl.sorting(headerCol.title)" ng-show="headerCol.show">
         <i class="material-icons md-18 hide-column" ng-click="$ctrl.appHideColumn({col: headerCol})">&#xE8F5;</i>
-        {{headerCol.title}}
+        {{::headerCol.title}}
         <span class="sortorder" ng-show="$ctrl.sortType === headerCol.title" ng-class="{reverse: $ctrl.sortReverse}"></span>
       </th>
     </tr>
   </thead>
   <tbody>
     <tr ng-repeat="row in $ctrl.appData  | orderBy:$ctrl.sortType:$ctrl.sortReverse">
-      <td ng-repeat="headerCol in $ctrl.appColumns">{{row[headerCol.title]}}</td>
+      <td ng-repeat="headerCol in $ctrl.appColumns">{{::row[headerCol.title]}}</td>
     </tr>
   </tbody>
 

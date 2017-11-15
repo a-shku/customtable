@@ -1,1 +1,7 @@
 <i class="material-icons show-column">&#xE03B;</i>
+
+<ul>
+  <li ng-repeat="col in $ctrl.appColumns" ng-class="{inactive: !col.show}">
+    {{col}}
+  </li>
+</ul>

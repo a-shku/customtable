@@ -48,13 +48,15 @@ export class MainController {
     this.updateVisibilityData(this.columns[index])
     let turnedOffCol = this.columns[index];
     turnedOffCol.show = false;
-    this.columns.splice(index, 1);
     this.hiddenColumns.push(turnedOffCol);
+
+    this.columns.splice(index, 1);
 
     console.log('this.hiddenColumns', this.hiddenColumns);
 
     //let indexOrigin = this.originColumns.map(function (item) { return item.title; }).indexOf(col.title);
-    //this.originColumns[indexOrigin].show = false;
+    this.originColumns[indexOrigin].show = false;
+    console.log('hidec', this.originColumns);
 
   };
 
