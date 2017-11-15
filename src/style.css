@@ -38,7 +38,11 @@ table {
 
 .sortorder.reverse:after {
     content: '\25bc';
-} 
+}
+
+.switcher-list--icon {
+  vertical-align: middle;
+}
 
 .menudemoBasicUsage .md-menu-demo {
   padding: 24px; }

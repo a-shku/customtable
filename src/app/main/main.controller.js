@@ -16,7 +16,6 @@ export class MainController {
   }
 
   $onInit() {
-    console.log('data');
     this.hiddenColumns = [];
     this.data = this.dataColumnsInit(this.columns, this.data);
 
@@ -31,7 +30,7 @@ export class MainController {
         })
       }
     })
-    console.log(data);
+
     return data;
   }
 
@@ -45,30 +44,44 @@ export class MainController {
     let index = getTurnerdOffIndex(this.columns, col);
     let indexOrigin = getTurnerdOffIndex(this.originColumns, col);
 
-    this.updateVisibilityData(this.columns[index])
+    //this.updateVisibilityData(this.columns[index])
     let turnedOffCol = this.columns[index];
     turnedOffCol.show = false;
     this.hiddenColumns.push(turnedOffCol);
 
     this.columns.splice(index, 1);
 
-    console.log('this.hiddenColumns', this.hiddenColumns);
-
     //let indexOrigin = this.originColumns.map(function (item) { return item.title; }).indexOf(col.title);
     this.originColumns[indexOrigin].show = false;
-    console.log('hidec', this.originColumns);
 
   };
 
-
-  updateVisibilityData(col) {
-    this.data = this.data.map(item => {
-      delete item[col.title]
-      return item
-
-    });
-    console.log('visibility', this.data);
+  showColumn(col) {
+    this.columns.push(col);
   }
+
+  toggleColumns(col) {
+    for (let i = 0, len = this.originColumns.length; i < len - 1; i++) {
+      if (this.originColumns[i].title === col.title) {
+        this.originColumns[i].show = !this.originColumns[i].show;
+
+        this.originColumns[i].show ? this.showColumn(col) : this.hideColumn(col);
+
+        console.log(this.originColumns[i]);
+        break;
+      }
+    }
+
+  }
+
+
+  // updateVisibilityData(col) {
+  //   this.data = this.data.map(item => {
+  //     delete item[col.title]
+  //     return item
+
+  //   });
+  // }
 
   activate($timeout, webDevTec) {
     this.getWebDevTec(webDevTec);
