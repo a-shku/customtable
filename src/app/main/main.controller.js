@@ -1,41 +1,48 @@
 export class MainController {
-  constructor($timeout, webDevTec, toastr, columns, data) {
+  constructor($window, $timeout, webDevTec, toastr, columns, data) {
     'ngInject';
 
+    this.window = $window;
     this.awesomeThings = [];
     this.classAnimation = '';
     this.creationDate = 1510568737519;
     this.toastr = toastr;
-    this.originColumns = angular.copy(columns);
+    this.originColumns = JSON.parse(this.window.localStorage.getItem('show')) || angular.copy(columns);
     this.columns = columns;
     this.originData = data;
     this.data = data;
     this.activate($timeout, webDevTec);
     this.$onInit();
 
-  }
+  };
 
   $onInit() {
     this.hiddenColumns = [];
-    this.data = this.dataColumnsInit(this.columns, this.data);
+    this.columns = this.dataColumnsInit(this.originColumns, this.columns);
+  };
 
-  }
+  dataColumnsInit(originCols, cols) {
+    debugger
+    originCols.forEach((originItem, originIndex) => {
 
-  dataColumnsInit(cols, data) {
-    cols.forEach((item, index) => {
-      if (!item.show) {
-        data.forEach((dataItem, dataIndex) => {
-          delete dataItem[item.title];
-
-        })
+      if (!originItem.show) {
+        for (let len = cols.length, i = len - 1; i > -1; i--) {
+          if (cols[i].title == originItem.title) {
+            cols.splice(i, 1);
+          }
+        }
       }
-    })
 
-    return data;
-  }
+    });
+    return cols;
+  };
+
+  saveToStorage(show, sort) {
+    let showColumns = JSON.stringify(show);
+    this.window.localStorage.setItem('show', showColumns);
+  };
 
   hideColumn(col) {
-    //let index = this.columns.map(function (item) { return item.title; }).indexOf(col.title);
 
     function getTurnerdOffIndex(arr, col) {
       return arr.map(function (item) { return item.title; }).indexOf(col.title);
@@ -44,51 +51,40 @@ export class MainController {
     let index = getTurnerdOffIndex(this.columns, col);
     let indexOrigin = getTurnerdOffIndex(this.originColumns, col);
 
-    //this.updateVisibilityData(this.columns[index])
     let turnedOffCol = this.columns[index];
-    turnedOffCol.show = false;
-    this.hiddenColumns.push(turnedOffCol);
+    //turnedOffCol.show = false;
+    //this.hiddenColumns.push(turnedOffCol);
 
     this.columns.splice(index, 1);
 
-    //let indexOrigin = this.originColumns.map(function (item) { return item.title; }).indexOf(col.title);
     this.originColumns[indexOrigin].show = false;
 
+    this.saveToStorage(this.originColumns);
   };
 
-  showColumn(col) {
-    this.columns.push(col);
-  }
+  showColumn(col, index) {
+    this.columns.splice(index, 0, col);
+    this.saveToStorage(this.originColumns);
+  };
 
-  toggleColumns(col) {
-    for (let i = 0, len = this.originColumns.length; i < len - 1; i++) {
+  toggleColumns(col, index) {
+    for (let i = 0, len = this.originColumns.length; i < len; i++) {
       if (this.originColumns[i].title === col.title) {
         this.originColumns[i].show = !this.originColumns[i].show;
-
-        this.originColumns[i].show ? this.showColumn(col) : this.hideColumn(col);
-
-        console.log(this.originColumns[i]);
+        this.originColumns[i].show ? this.showColumn(col, index) : this.hideColumn(col);
         break;
       }
     }
 
-  }
+  };
 
-
-  // updateVisibilityData(col) {
-  //   this.data = this.data.map(item => {
-  //     delete item[col.title]
-  //     return item
-
-  //   });
-  // }
 
   activate($timeout, webDevTec) {
     this.getWebDevTec(webDevTec);
     $timeout(() => {
       this.classAnimation = 'rubberBand';
     }, 4000);
-  }
+  };
 
   getWebDevTec(webDevTec) {
     this.awesomeThings = webDevTec.getTec();
@@ -96,10 +92,10 @@ export class MainController {
     angular.forEach(this.awesomeThings, (awesomeThing) => {
       awesomeThing.rank = Math.random();
     });
-  }
+  };
 
   showToastr() {
     this.toastr.info('Fork <a href="https://github.com/Swiip/generator-gulp-angular" target="_blank"><b>generator-gulp-angular</b></a>');
     this.classAnimation = '';
-  }
+  };
 }

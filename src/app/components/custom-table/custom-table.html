@@ -10,7 +10,7 @@
   </thead>
   <tbody>
     <tr ng-repeat="row in $ctrl.appData  | orderBy:$ctrl.sortType:$ctrl.sortReverse">
-      <td ng-repeat="headerCol in $ctrl.appColumns">{{row[headerCol.title]}}</td>
+      <td ng-repeat="headerCol in $ctrl.appColumns">{{::row[headerCol.title]}}</td>
     </tr>
   </tbody>
 

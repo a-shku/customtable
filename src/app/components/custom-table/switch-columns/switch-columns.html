@@ -13,9 +13,9 @@
   <md-menu-content width="4" id="toggleList">
     <md-menu-item class="switcher-item" ng-repeat="col in $ctrl.appColumns" ng-class="{inactive: !col.show}">
 
-      <md-button ng-click="$ctrl.appToggle({col: col})" md-prevent-menu-close="md-prevent-menu-close">
+      <md-button ng-click="$ctrl.appToggle({col: col, index: $index})" md-prevent-menu-close="md-prevent-menu-close">
         <i class="material-icons switcher-list--icon">{{col.show ? '&#xE834;' : '&#xE835;'}}</i>
-        {{col.title}}
+        {{::col.title}}
       </md-button>
 
 
