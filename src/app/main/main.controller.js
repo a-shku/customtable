@@ -101,6 +101,7 @@ export class MainController {
 
       for (let len = word.length, i = len - 1; i > -1; i--) {
         let a = word[i];
+        console.log(regExp.test(word[i], word[i]));
         if (regExp.test(word[i])) {
           finalWordArray[i] = word[i];
         }
