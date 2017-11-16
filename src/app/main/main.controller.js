@@ -11,7 +11,7 @@ export class MainController {
     this.columns = columns;
     this.originData = data;
     this.data = data;
-    this.activate($timeout, webDevTec);
+    this.result = '';
     this.$onInit();
 
   };
@@ -19,10 +19,11 @@ export class MainController {
   $onInit() {
     this.hiddenColumns = [];
     this.columns = this.dataColumnsInit(this.originColumns, this.columns);
+    //console.log(this.reverse('s1tar3t 2 hellow'));
   };
 
   dataColumnsInit(originCols, cols) {
-    debugger
+
     originCols.forEach((originItem, originIndex) => {
 
       if (!originItem.show) {
@@ -79,23 +80,42 @@ export class MainController {
   };
 
 
-  activate($timeout, webDevTec) {
-    this.getWebDevTec(webDevTec);
-    $timeout(() => {
-      this.classAnimation = 'rubberBand';
-    }, 4000);
-  };
-
-  getWebDevTec(webDevTec) {
-    this.awesomeThings = webDevTec.getTec();
-
-    angular.forEach(this.awesomeThings, (awesomeThing) => {
-      awesomeThing.rank = Math.random();
-    });
-  };
 
   showToastr() {
     this.toastr.info('Fork <a href="https://github.com/Swiip/generator-gulp-angular" target="_blank"><b>generator-gulp-angular</b></a>');
     this.classAnimation = '';
   };
+
+  reverse(words) {
+    console.log('words', words);
+
+    let wordsArr = words.split(' ');
+    let finalWordsArr = [];
+
+    wordsArr.forEach((word) => {
+      let regExp = /[^a-zA-Z]/g;
+      let wordLetter = word.replace(regExp, '');
+      wordLetter = wordLetter.split('');
+      wordLetter = wordLetter.reverse();
+      let finalWordArray = [];
+
+      for (let len = word.length, i = len - 1; i > -1; i--) {
+        let a = word[i];
+        if (regExp.test(word[i])) {
+          finalWordArray[i] = word[i];
+        }
+        else {
+          finalWordArray[i] = wordLetter.pop();
+        }
+      }
+
+      finalWordsArr.push(finalWordArray.join(''));
+    });
+
+    this.result = finalWordsArr.join(' ');
+    return this.result;
+  }
+
+
+
 }
