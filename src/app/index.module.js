@@ -12,7 +12,7 @@ import customTableModule from './components/custom-table/custom-table.module';
 
 angular.module('table', [
   'ngAnimate',
-  'ngCookies',
+  //'ngCookies',
   'ngTouch',
   'ngSanitize',
   'ngMessages',
@@ -24,7 +24,7 @@ angular.module('table', [
   customTableModule
 ])
   .constant('malarkey', malarkey)
-  .constant('moment', moment)
+  //.constant('moment', moment)
   .config(config)
   .config(routerConfig)
   .run(runBlock)

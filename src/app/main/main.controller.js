@@ -14,13 +14,13 @@ export class MainController {
     this.result = '';
     this.$onInit();
 
-  };
+  }
 
   $onInit() {
     this.hiddenColumns = [];
     this.columns = this.dataColumnsInit(this.originColumns, this.columns);
     //console.log(this.reverse('s1tar3t 2 hellow'));
-  };
+  }
 
   dataColumnsInit(originCols, cols) {
 
@@ -36,12 +36,12 @@ export class MainController {
 
     });
     return cols;
-  };
+  }
 
   saveToStorage(show, sort) {
     let showColumns = JSON.stringify(show);
     this.window.localStorage.setItem('show', showColumns);
-  };
+  }
 
   hideColumn(col) {
 
@@ -53,20 +53,18 @@ export class MainController {
     let indexOrigin = getTurnerdOffIndex(this.originColumns, col);
 
     let turnedOffCol = this.columns[index];
-    //turnedOffCol.show = false;
-    //this.hiddenColumns.push(turnedOffCol);
-
+    
     this.columns.splice(index, 1);
 
     this.originColumns[indexOrigin].show = false;
 
     this.saveToStorage(this.originColumns);
-  };
+  }
 
   showColumn(col, index) {
     this.columns.splice(index, 0, col);
     this.saveToStorage(this.originColumns);
-  };
+  }
 
   toggleColumns(col, index) {
     for (let i = 0, len = this.originColumns.length; i < len; i++) {
@@ -77,43 +75,40 @@ export class MainController {
       }
     }
 
-  };
+  }
 
 
 
   showToastr() {
     this.toastr.info('Fork <a href="https://github.com/Swiip/generator-gulp-angular" target="_blank"><b>generator-gulp-angular</b></a>');
     this.classAnimation = '';
-  };
+  }
 
-  reverse(words) {
-    console.log('words', words);
+  reverse(string) {
 
-    let wordsArr = words.split(' ');
-    let finalWordsArr = [];
+    let wordsArr = string.split(' ');
+    let reversedWordsArr = [];
 
     wordsArr.forEach((word) => {
       let regExp = /[^a-zA-Z]/g;
-      let wordLetter = word.replace(regExp, '');
-      wordLetter = wordLetter.split('');
-      wordLetter = wordLetter.reverse();
-      let finalWordArray = [];
+      let letters = word.replace(regExp, '').split('').reverse();
+      let reversedWordArray = [];
 
       for (let len = word.length, i = len - 1; i > -1; i--) {
-        let a = word[i];
-        console.log(regExp.test(word[i], word[i]));
-        if (regExp.test(word[i])) {
-          finalWordArray[i] = word[i];
+        let bool = regExp.test(word[i]);
+        let bool2 = regExp.test(word[i]);
+        if (bool) {
+          reversedWordArray[i] = word[i];
         }
         else {
-          finalWordArray[i] = wordLetter.pop();
+          reversedWordArray[i] = letters.pop();
         }
       }
 
-      finalWordsArr.push(finalWordArray.join(''));
+      reversedWordsArr.push(reversedWordArray.join(''));
     });
 
-    this.result = finalWordsArr.join(' ');
+    this.result = reversedWordsArr.join(' ');
     return this.result;
   }
 
